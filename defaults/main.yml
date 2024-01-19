@@ -1,0 +1,4 @@
+---
+major_version: 6.4
+minor_version: 1
+zabbix_url: "https://repo.zabbix.com/zabbix/{{ major_version }}/ubuntu/pool/main/z/zabbix-release/zabbix-release_{{ major_version }}-{{ minor_version }}+ubuntu{{ ansible_distribution_version }}_all.deb"

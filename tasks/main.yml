@@ -1,0 +1,42 @@
+---
+- name: Get Zabbix Repo Packet
+  ansible.builtin.get_url:
+    url: "{{ zabbix_url }}"
+    dest: /tmp/zabbix.deb
+    mode: "0644"
+
+- name: Install Zabbix Repo
+  ansible.builtin.apt:
+    deb: /tmp/zabbix.deb
+
+- name: Del Zabbix Repo Packet
+  ansible.builtin.file:
+    dest: /tmp/zabbix.deb
+    state: absent
+
+- name: Install Zabbix-Agent2
+  ansible.builtin.apt:
+    name:
+      - zabbix-agent2
+      - zabbix-agent2-plugin-*
+    update_cache: true
+
+- name: Edit Server Directive
+  ansible.builtin.lineinfile:
+    name: /etc/zabbix/zabbix_agent2.conf
+    search_string: "# Server="
+    line: "Server=ofs-slctl-spb.superkassa.net"
+  notify: Restart Zabbix-Agent2
+
+- name: Edit ServerActive Directive
+  ansible.builtin.lineinfile:
+    name: /etc/zabbix/zabbix_agent2.conf
+    search_string: "# ServerActive="
+    line: "ServerActive=ofs-slctl-spb.superkassa.net"
+  notify: Restart Zabbix-Agent2
+
+- name: Ensure Zabbix-Agent2 is started and enabled at boot
+  ansible.builtin.service:
+    name: zabbix-agent2
+    state: started
+    enabled: true

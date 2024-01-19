@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  role_name: zabbix_agent
+  description: Role for install Zabbix Agent 2 on Ubuntu
+  author: bhikl
+  license: "license (BSD, MIT)"
+
+  min_ansible_version: "2.10"
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
