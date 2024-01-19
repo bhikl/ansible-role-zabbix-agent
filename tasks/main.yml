@@ -9,11 +9,6 @@
   ansible.builtin.apt:
     deb: /tmp/zabbix.deb
 
-- name: Del Zabbix Repo Packet
-  ansible.builtin.file:
-    dest: /tmp/zabbix.deb
-    state: absent
-
 - name: Install Zabbix-Agent2
   ansible.builtin.apt:
     name:

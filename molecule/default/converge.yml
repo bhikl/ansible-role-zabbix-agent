@@ -22,4 +22,4 @@
       failed_when: systemctl_status.rc > 1
 
   roles:
-    - role: bhikl.zabbix-agent
+    - role: bhikl.zabbix_agent
