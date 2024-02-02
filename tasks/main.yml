@@ -19,14 +19,14 @@
 - name: Edit Server Directive
   ansible.builtin.lineinfile:
     name: /etc/zabbix/zabbix_agent2.conf
-    search_string: "# Server="
+    search_string: "Server=127.0.0.1"
     line: "Server=ofs-slctl-spb.superkassa.net"
   notify: Restart Zabbix-Agent2
 
 - name: Edit ServerActive Directive
   ansible.builtin.lineinfile:
     name: /etc/zabbix/zabbix_agent2.conf
-    search_string: "# ServerActive="
+    search_string: "ServerActive=127.0.0.1"
     line: "ServerActive=ofs-slctl-spb.superkassa.net"
   notify: Restart Zabbix-Agent2
 
